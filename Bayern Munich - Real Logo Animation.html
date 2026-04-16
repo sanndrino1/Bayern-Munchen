@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///C:/projects/w_style_app/lib/index18.html -->
+<html lang="bg"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayern Munich - Real Logo Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            font-family: 'Arial Black', sans-serif;
+            overflow: hidden;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* 5 ЗВЕЗДИ ОТГОРЕ */
+        .stars-container {
+            position: absolute;
+            top: -20px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .star {
+            font-size: 30px;
+            color: #d4af37;
+            text-shadow: 0 0 15px #ffcc00;
+            animation: star-glow 1.5s infinite alternate;
+        }
+
+        @keyframes star-glow {
+            from { transform: scale(0.9); opacity: 0.7; }
+            to { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* ГЛАВНАТА ЕМБЛЕМА */
+        .real-logo {
+            width: 180px;
+            height: 180px;
+            z-index: 5;
+            animation: intro-rotate 2s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+        }
+
+        @keyframes intro-rotate {
+            from { transform: rotate(0deg) scale(0); }
+            to { transform: rotate(360deg) scale(1); }
+        }
+
+        /* ПУЛСАЦИЯ НА ВЪНШНИЯ КРЪГ */
+        .outer-pulse-ring {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #dc052d;
+            z-index: 4;
+            animation: pulse-outer 2s infinite ease-out 2s;
+        }
+
+        @keyframes pulse-outer {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        /* ПУЛСАЦИЯ НА ВЪТРЕШНИЯ КРЪГ (СИНЬО СИЯНИЕ В ЦЕНТЪРА) */
+        .inner-diamond-pulse {
+            position: absolute;
+            width: 85px;
+            height: 85px;
+            background: radial-gradient(circle, rgba(0,102,178,0.8) 0%, transparent 75%);
+            border-radius: 50%;
+            z-index: 6; /* НАД картинката, за да свети върху нея */
+            animation: pulse-diamonds 0.8s infinite alternate 2s;
+        }
+
+        @keyframes pulse-diamonds {
+            from { opacity: 0.2; transform: scale(0.8); }
+            to { opacity: 0.9; transform: scale(1.1); }
+        }
+
+        /* ТЕКСТОВЕ */
+        .text-box {
+            display: flex;
+            gap: 4px;
+        }
+
+        .letter {
+            font-size: 1.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #dc052d;
+            opacity: 0;
+            animation: pop 0.5s forwards;
+        }
+
+        @keyframes pop {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .motto {
+            color: #dc052d;
+            font-style: italic;
+            margin-top: 10px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeIn 1s forwards 2s;
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="logo-wrapper">
+        <div class="stars-container">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+        </div>
+
+        <div class="outer-pulse-ring"></div>
+        
+        <div class="inner-diamond-pulse"></div>
+
+        <img src="./Bayern Munich - Real Logo Animation_files/FC_Bayern_München_logo_(2017).svg" class="real-logo" alt="Bayern Logo">
+    </div>
+
+    <div class="text-box" id="titleContainer"><span class="letter" style="animation-delay: 1.5s;">B</span><span class="letter" style="animation-delay: 1.58s;">A</span><span class="letter" style="animation-delay: 1.66s;">Y</span><span class="letter" style="animation-delay: 1.74s;">E</span><span class="letter" style="animation-delay: 1.82s;">R</span><span class="letter" style="animation-delay: 1.9s;">N</span><span class="letter" style="animation-delay: 1.98s;">&nbsp;</span><span class="letter" style="animation-delay: 2.06s;">M</span><span class="letter" style="animation-delay: 2.14s;">U</span><span class="letter" style="animation-delay: 2.22s;">N</span><span class="letter" style="animation-delay: 2.3s;">C</span><span class="letter" style="animation-delay: 2.38s;">H</span><span class="letter" style="animation-delay: 2.46s;">E</span><span class="letter" style="animation-delay: 2.54s;">N</span></div>
+    <div class="motto">MIA SAN MIA</div>
+
+    <script>
+        const title = "BAYERN MUNCHEN";
+        const container = document.getElementById('titleContainer');
+
+        title.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.textContent = char === ' ' ? '\u00A0' : char;
+            span.className = 'letter';
+            span.style.animationDelay = `${i * 0.08 + 1.5}s`;
+            container.appendChild(span);
+        });
+    </script>
+
+
+</body></html>
